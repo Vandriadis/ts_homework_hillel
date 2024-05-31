@@ -199,28 +199,28 @@ class Student {
     return this._visits;
   }
 
+  set grade(grade: Grade) {
+    const existingGrade = this._grades.find(g => g.workName === grade.workName);
+    if (existingGrade) {
+      existingGrade.mark = grade.mark;
+    } else {
+      this._grades.push(grade);
+    }
+  }
+
+  set visit(visit: Visit) {
+    const existingVisit = this._visits.find(v => v.lesson === visit.lesson);
+    if (existingVisit) {
+      existingVisit.present = visit.present;
+    } else {
+      this._visits.push(visit);
+    }
+  }
+
   constructor(firstName: string, lastName: string, birthYear: number) {
     this._firstName = firstName;
     this._lastName = lastName;
     this._birthYear = birthYear;
-  }
-
-  setGrade(workName: string, mark: number): void {
-    const grade = this._grades.find(g => g.workName === workName);
-    if (grade) {
-      grade.mark = mark;
-    } else {
-      this._grades.push({ workName, mark });
-    }
-  }
-
-  setVisit(lesson: string, present: boolean): void {
-    const visit = this._visits.find(v => v.lesson === lesson);
-    if (visit) {
-      visit.present = present;
-    } else {
-      this._visits.push({ lesson, present });
-    }
   }
 
   getPerformanceRating(): number {
