@@ -2,6 +2,9 @@
 // У кожного з них є загальнодоступний метод calculateArea.
 // У кожної фігури є загальнодоступні властивості - колір і назва, які не можна змінювати після створення.
 // У Square і Rectangle зі свого боку є ще додатковий метод print, який виводить рядок із формулою розрахунку площі
+interface IPrintable {
+  print(): void;
+}
 abstract class Shape {
   public readonly color: string;
   public readonly name: string;
@@ -27,7 +30,7 @@ class Circle extends Shape {
   }
 }
 
-class Rectangle extends Shape {
+class Rectangle extends Shape implements IPrintable {
   protected width: number;
   protected height: number;
 
@@ -46,7 +49,7 @@ class Rectangle extends Shape {
   }
 }
 
-class Square extends Rectangle {
+class Square extends Rectangle implements IPrintable {
   constructor(color: string, sideLength: number) {
     super(color, sideLength, sideLength);
   }
